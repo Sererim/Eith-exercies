@@ -1,10 +1,14 @@
 ﻿int Main()
 {
-    int[,] arr = new int[2,2];
+    int[,] arr = new int[4,4];
 
-    arr = homework.Make(arr,2,2);
+    arr = homework.Make(arr,4,4);
 
-    homework.Show(arr,2,2);
+    homework.Show(arr,4,4);
+
+    arr = homework.Ordered(arr,4,4);
+
+    homework.Show(arr,4,4);
 
     return 0;
 }
@@ -32,4 +36,28 @@ class homework
             Console.WriteLine();
         }
     }
+
+    static public int[,] Ordered(int[,] arr, int m, int n)
+    {
+        int foo = 0;
+
+        for(int i = 0; i < m; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                for(int k = j; k < n; k++)
+                {
+                    if(arr[i,j] < arr[i,k])
+                    {
+                        foo = arr[i,k];
+                        arr[i,k] = arr[i,j];
+                        arr[i,j] = foo;
+                    }
+                }
+            }
+        }
+
+        return arr;
+    }
+
 }
