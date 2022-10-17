@@ -1,16 +1,31 @@
 ﻿int Main()
 {
+    int m,n;
+    string key;
+    Console.WriteLine("Enter matrix demensions m x n.\nEnter m");
+    key = Console.ReadLine();
+    m = System.Int32.Parse(key);
+    Console.WriteLine("Enter n.");
+    key = Console.ReadLine();
+    n = System.Int32.Parse(key);
     int[,] arr = new int[4,4];
+    int[,] mat = new int[4,4];
 
     arr = homework.Make(arr,4,4);
-
+    mat = homework.Make(mat,4,4);
     homework.Show(arr,4,4);
-
+    Console.WriteLine("*************************");
     arr = homework.Ordered(arr,4,4);
-
     homework.Show(arr,4,4);
-
+    Console.WriteLine("_________________________");
     homework.Small(arr,4,4);
+    Console.WriteLine("*************************");
+    homework.Show(arr,4,4);
+    Console.WriteLine("_________________________");
+    homework.Show(mat,4,4);
+    Console.WriteLine("_________________________");
+    arr = homework.Mulp(arr,mat,4,4);
+    homework.Show(arr,4,4);
 
     return 0;
 }
@@ -25,7 +40,7 @@ class homework
         Random rand = new Random();
         for(int i = 0; i < m; i++)
             for(int j = 0; j < n; j++)
-                arr[i,j] = rand.Next(-20,20);
+                arr[i,j] = rand.Next(0,5);
         return arr;
     }
     // Method for showing a matrix.
@@ -96,4 +111,15 @@ class homework
                 Console.WriteLine($"\nThe smallest sum.\nRow {i + 1} has the sum {sum[i]}.");     
     }
 
+    // Method for matrixes multiplication.
+    static public int[,] Mulp(int[,] arr, int[,] mat, int m, int n)
+    {
+        int[,] product = new int[m,n];
+
+        for(int i = 0; i < m; i++)
+            for(int j = 0; j < n; j++)
+                product[i,j] = arr[i,j] * mat[j,i];
+
+        return product;
+    }
 }
